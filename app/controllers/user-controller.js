@@ -1,5 +1,6 @@
 const path = require('path');
 const userModel = require('../models/user-model');
+// const response = require('../responses');
 const userService = require('../services/user-service')(userModel);
 const addFunction = require('../services/test')();
 
@@ -23,10 +24,15 @@ function userController() {
         userService
             .getAllUser(req, res)
             .then (users => {
+                // debugger;
+                // var result = new response.SuccessResponse();
+                // result.data = users;
+                // res.status(200).json(result);
                 res.status(200).json(users);
             })
             .catch(error => {
-                res.status(500).send('Error Getting All Users!');
+                res.status(500).json('Error Getting All Users!');
+                // res.status(500).json(new response.ErrorResponse(error));
             })
     };
 
