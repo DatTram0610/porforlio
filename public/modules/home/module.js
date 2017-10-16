@@ -12,10 +12,6 @@
                 'content@app': {
                     templateUrl: '/public/modules/home/home.html',
                     controller: 'homeController as homeCtrl'
-                },
-                'footer@app': {
-                    templateUrl: '/public/modules/home/footer.html',
-                    controller: 'homeController as homeCtrl'
                 }
             }
         })

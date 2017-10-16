@@ -11,7 +11,10 @@ $(function () {
 
     angular.module('project', [
     // 3rd party
-    'ui.router', 'project.test', 'project.home']).config(RouteConfig);
+    'ui.router', 'ui.bootstrap',
+
+    // Site modules
+    'project.test', 'project.home']).config(RouteConfig);
 
     RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
@@ -34,10 +37,6 @@ $(function () {
             views: {
                 'content@app': {
                     templateUrl: '/public/modules/home/home.html',
-                    controller: 'homeController as homeCtrl'
-                },
-                'footer@app': {
-                    templateUrl: '/public/modules/home/footer.html',
                     controller: 'homeController as homeCtrl'
                 }
             }
@@ -75,6 +74,5 @@ $(function () {
 
     function HomeController() {
         var vm = this;
-        vm.header = "Welcome Home, David";
     }
 })();

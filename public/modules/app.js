@@ -4,6 +4,9 @@
     angular.module('project', [
         // 3rd party
         'ui.router', 
+        'ui.bootstrap',
+
+        // Site modules
         'project.test',
         'project.home'
 

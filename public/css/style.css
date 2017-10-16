@@ -1,0 +1,104 @@
+body, html {
+   margin: 0;
+   padding: 0;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/w3images/coffeehouse.jpg");
+    min-height: 75%;
+}
+.menu {
+    display: none;
+}
+
+/* NAVIGATION BAR Begin */
+ul {
+    list-style-type: none;
+    margin: -10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    font-size: 20px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none !important;
+    margin-left: 5px;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.navigation {
+    background-color: #333;
+    margin-bottom: 0;
+}
+/* NAVIGATION BAR End */
+
+/* HEADER Begin */
+
+.header {
+    position: relative;
+    text-align: center;
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+    color: white;
+}
+
+.bg
+{
+  width: 100%;
+  z-index: 0;
+}
+
+.bottom-left {
+    bottom: 5%;
+    left: 2%;
+    position: absolute;
+    background: black;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+/* HEADER End */
+
+/* CONTENT Begin */
+.content {
+    padding: 1%;
+    text-align: center;
+    background-color: #d0e4e5;
+    color: black;
+}
+/* CONTENT End */
+
+/* BODY TABS Begin */
+li.active a.ng-binding {
+    color: #000 !important;
+    background-color:  #8CBEB2 !important;
+    text-decoration: none;
+}
+
+li a.ng-binding {
+    color: #777777;
+    background-color: #F2EBBF;
+    text-decoration: none;
+}
+
+.tab-container {
+    border-style: solid;
+    border-color: #dcdcdc;
+    border-width: 0px 1px 1px 1px;
+    background-color: #8CBEB2;
+    padding: 15px;
+}
+/* BODY TABS End */
+
