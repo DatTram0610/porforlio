@@ -49,7 +49,6 @@ li a:hover {
 .header {
     position: relative;
     text-align: center;
-    height: 100%;
     font-family: "Inconsolata", sans-serif;
     color: white;
 }
@@ -75,8 +74,8 @@ li a:hover {
 .content {
     padding: 1%;
     text-align: center;
-    background-color: #d0e4e5;
-    color: black;
+    background-color: black;
+    color: white;
 }
 /* CONTENT End */
 
