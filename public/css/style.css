@@ -1,0 +1,102 @@
+body, html {
+   margin: 0;
+   padding: 0;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/w3images/coffeehouse.jpg");
+    min-height: 75%;
+}
+.menu {
+    display: none;
+}
+
+/* NAVIGATION BAR Begin */
+ul {
+    list-style-type: none;
+    margin: -10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    font-size: 20px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none !important;
+    margin-left: 5px;
+}
+
+li a:hover {
+    background-color: rgb(126, 203, 233);
+}
+
+.navigation {
+    background-color: rgb(23, 182, 221);
+    margin-bottom: 0;
+}
+
+#menu-icon {
+	display: hidden;
+	width: 40px;
+	height: 40px;
+	background: url(../image/nav.png) center;
+}
+/* NAVIGATION BAR End */
+
+/* HEADER Begin */
+.gradient{width:2000px;height:400px;
+    background: rgb(126, 203, 233); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( rgb(126, 203, 233) , white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( rgb(126, 203, 233), white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( rgb(126, 203, 233), white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( rgb(126, 203, 233) , white); /* Standard syntax */
+    z-index: -1;
+}
+
+.profile {
+    width: 9%;
+    height: auto;
+    border-radius: 5%;
+    margin: 5% 25% 15% 30%;
+}
+
+/* HEADER End */
+
+/* CONTENT Begin */
+.inner-wrapper {
+	width: 95%;
+    background-color: white;
+    margin: auto
+}
+
+.icon {
+    margin: 0;
+    position: relative;
+    display: inline;
+    margin: 2em;
+}
+
+.language-icon {
+    width: 10em;
+    height: 10em;
+}
+
+.language-icon:hover {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+
+/* CONTENT End */
