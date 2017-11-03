@@ -29,6 +29,13 @@ app.use(
     })
 );
 
+app.use(
+    '/admin',
+    express.static(path.join(__dirname, 'admin'), {
+        fallthrough: false
+    })
+);
+
 app.listen(port, () => {
     console.log(`Magic is happening at ${port}`);
 });

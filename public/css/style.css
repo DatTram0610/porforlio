@@ -52,20 +52,31 @@ li a:hover {
 /* NAVIGATION BAR End */
 
 /* HEADER Begin */
-.gradient{width:2000px;height:400px;
+.gradient{
+    width: 130em;
+    height: 30em;
     background: rgb(126, 203, 233); /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient( rgb(126, 203, 233) , white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient( rgb(126, 203, 233), white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient( rgb(126, 203, 233), white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient( rgb(126, 203, 233) , white); /* Standard syntax */
+    background: -webkit-linear-gradient( rgb(126, 203, 233) 50%, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( rgb(126, 203, 233) 50%, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( rgb(126, 203, 233) 50%, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( rgb(126, 203, 233) 50%, white); /* Standard syntax */
     z-index: -1;
+    position: relative;
 }
 
-.profile {
-    width: 9%;
+.profile-image {
+    width: 12%;
     height: auto;
     border-radius: 5%;
-    margin: 5% 25% 15% 30%;
+    margin: 3% 20% 15% 60%;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-content {
+    margin: 3% 60% 15% 20%;
+    position: absolute;
+    color: white;
 }
 
 /* HEADER End */
@@ -74,13 +85,12 @@ li a:hover {
 .inner-wrapper {
 	width: 95%;
     background-color: white;
-    margin: auto
+    margin: auto;
 }
 
 .icon {
-    margin: 0;
     position: relative;
-    display: inline;
+    display: inline-block;
     margin: 2em;
 }
 
@@ -89,9 +99,59 @@ li a:hover {
     height: 10em;
 }
 
+.icon-caption {
+    font-family: 'Trocchi', serif;
+    position: absolute;
+    margin: 3em 8em 7em 2em;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+.icon:hover .icon-caption{
+    display: block;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .language-icon:hover {
-    opacity: 0.3;
-    filter: alpha(opacity=30);
+    opacity: 0;
+    filter: alpha(opacity=0);
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     transform: scale(1.5);

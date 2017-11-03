@@ -3,3 +3,4 @@
 $(function () {
     angular.bootstrap(document, ['project'])
 })
+

@@ -5,7 +5,8 @@ module.exports = siteController;
 function siteController() {
 
     return {
-        getSite: getSite
+        getSite: getSite,
+        getAdminSite: getAdminSite
     }
 
     function getSite(req, res) {
@@ -13,4 +14,10 @@ function siteController() {
             root: path.join(__dirname, '../..')
         });
     };
+
+    function getAdminSite(req, res) {
+        res.sendFile('admin/index.html', {
+            root: path.join(__dirname, '../..')
+        })
+    }
 }

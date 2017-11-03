@@ -6,3 +6,4 @@ module.exports = router;
 
 
 router.get('/', siteController.getSite);
+router.get('/admin', siteController.getAdminSite);
