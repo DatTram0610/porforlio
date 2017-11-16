@@ -7,7 +7,7 @@
     function RouteConfig($stateProvider) {
 
         $stateProvider.state('app.home', {
-            url: '/',
+            url: '/home',
             views: {
                 'content@app': {
                     templateUrl: '/public/modules/home/home.html',

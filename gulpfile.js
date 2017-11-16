@@ -1,20 +1,36 @@
-var es = require('event-stream')
-var gulp = require('gulp')
-var concat = require('gulp-concat')
-var uglify = require('gulp-uglify')
-var zip = require('gulp-zip')
-var minimist = require('minimist')
-var fs = require('fs')
-var _ = require('lodash')
-var path = require('path')
-var mergeStream = require('merge-stream')
-var strip = require('gulp-strip-comments')
-var babel = require('gulp-babel')
+const es = require('event-stream')
+const gulp = require('gulp')
+const minimist = require('minimist')
+const fs = require('fs')
+const _ = require('lodash')
+const path = require('path')
+const mergeStream = require('merge-stream')
+const stripAnsi = require('strip-ansi')
 
-var scripts = require('./public/app.scripts.json')
+const plugins = require('gulp-load-plugins')()
+const { concat, uglify, zip, plumber, babel, notify, stripComments: strip } = plugins
+const gulpif = plugins.if
 
-var source = {
-    js: {
+const adminScripts = require('./admin/app.scripts.json')
+const publicScripts = require('./public/app.scripts.json')
+
+const source = {
+    admin: {
+        src: [
+            // bootstrap angular
+            'admin/modules/main.js',
+
+            // main module
+            'admin/modules/app.js',
+
+            // module files
+            'admin/modules/**/module.js',
+
+            // other js files [controllers, services, etc.]
+            'admin/modules/**/!(module)*.js'
+        ]
+    },
+    public: {
         src: [
             // bootstrap angular
             'public/modules/main.js',
@@ -31,35 +47,79 @@ var source = {
     }
 }
 
-var destinations = {
-    js: 'public/build'
+const destinations = {
+    admin: {
+        js: 'admin/build'
+    },
+    public: {
+        js: 'public/build'
+    }
 }
-// concats angular files
-gulp.task('js', function() {
-    return es.merge(gulp.src(source.js.src))
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        // .pipe(uglify())
-        .pipe(concat('app.js'))
-        .on('error', swallowError)
-        .pipe(gulp.dest(destinations.js))
-})
 
-gulp.task('watch', function() {
-    gulp.watch(source.js.src, ['js'])
+const appWasBroken = {
+    admin: false,
+    public: false
+}
+
+gulp.task('admin-js', buildApp('admin'))
+gulp.task('public-js', buildApp('public'))
+
+// creates task to concat angular files
+function buildApp(fileset) {
+    return function () {
+        let isBroken = false
+
+        gulp.src(source[fileset].src)
+            .pipe(plumber({
+                errorHandler: error => {
+                    isBroken = true
+                    appWasBroken[fileset] = true
+                    const strippedError = Object.create(error)
+                    strippedError.stack = stripAnsi(error.stack)
+                    return notify.onError("<%= error.stack %>")(strippedError)
+                }
+            }))
+            .pipe(babel({
+                presets: ['es2015']
+            }))
+            // .pipe(uglify())
+            .pipe(concat('app.js'))
+            .pipe(gulp.dest(destinations[fileset].js))
+            .pipe(gulpif(
+                file => {
+                    if (!appWasBroken[fileset] || isBroken) return false
+                    appWasBroken[fileset] = false
+                    return true
+                },
+                notify(`${fileset} app fixed!`)
+            ))
+    }
+}
+
+gulp.task('watch', ['admin-js' ,'public-js' ], function () {
+    gulp.watch(source.admin.src, ['admin-js'])
+    gulp.watch(source.public.src, ['public-js'])
 })
 
 // builds vendor files listed in app.scripts.json
-gulp.task('vendor', buildVendor)
+gulp.task('vendor-admin', buildAdminVendor)
+gulp.task('vendor-public', buildPublicVendor)
 
-function buildVendor() {
+function buildPublicVendor(scripts, dest) {
+    return buildVendor(publicScripts, destinations.public.js)
+}
+
+function buildAdminVendor(scripts, dest) {
+    return buildVendor(adminScripts, destinations.admin.js)
+}
+
+function buildVendor(scripts, dest) {
     let tasks = []
-    _.forIn(scripts.chunks, function(chunkScripts, chunkName) {
-        var paths = []
-        chunkScripts.forEach(function(script) {
-            var scriptFileName = scripts.paths[script]
-            var scriptPath = path.join(__dirname, scriptFileName)
+    _.forIn(scripts.chunks, function (chunkScripts, chunkName) {
+        let paths = []
+        chunkScripts.forEach(function (script) {
+            let scriptFileName = scripts.paths[script]
+            let scriptPath = path.join(__dirname, scriptFileName)
             if (!fs.existsSync(scriptPath)) {
                 throw console.error(`Required path doesn't exist: ${scriptPath}`, script)
             }
@@ -71,15 +131,15 @@ function buildVendor() {
             .on('error', swallowError)
             .pipe(strip())
             .pipe(uglify())
-            .pipe(gulp.dest(destinations.js)))
+            .pipe(gulp.dest(dest)))
     })
     return mergeStream(tasks)
 }
 
 gulp.task('default', ['dev'])
-gulp.task('dev', ['vendor', 'js', 'watch'])
+gulp.task('dev', ['vendor-admin', 'vendor-public', 'admin-js', 'public-js', 'watch'])
 
-var knownOptions = {
+const knownOptions = {
     string: 'packageName',
     string: 'packagePath',
     default: {
@@ -88,12 +148,13 @@ var knownOptions = {
     }
 }
 
-var options = minimist(process.argv.slice(2), knownOptions)
+const options = minimist(process.argv.slice(2), knownOptions)
 // This task is specifically setup for deploying to AZURE.
-gulp.task('prod', ['vendor', 'js'], buildProdPackage)
+
+gulp.task('prod', ['vendor-admin', 'vendor-public', 'admin-js', 'public-js'])
 
 function buildProdPackage() {
-    var packagePaths = ['**',
+    let packagePaths = ['**',
         '!**/_package/**',
         '!**/typings/**',
         '!typings',
@@ -103,12 +164,12 @@ function buildProdPackage() {
     ]
 
     // add exclusion patterns for all dev dependencies
-    var packageJSON = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'))
-    var devDeps = packageJSON.devDependencies
+    let packageJSON = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'))
+    let devDeps = packageJSON.devDependencies
 
-    for (var propName in devDeps) {
-        var excludePattern1 = '!**/node_modules/' + propName + '/**'
-        var excludePattern2 = '!**/node_modules/' + propName
+    for (let propName in devDeps) {
+        let excludePattern1 = '!**/node_modules/' + propName + '/**'
+        let excludePattern2 = '!**/node_modules/' + propName
         packagePaths.push(excludePattern1)
         packagePaths.push(excludePattern2)
     }
@@ -118,7 +179,7 @@ function buildProdPackage() {
         .pipe(gulp.dest(options.packagePath))
 }
 
-var swallowError = function(error) {
+const swallowError = function (src, task, error) {
     console.log(error.toString())
     this.emit('end')
 }

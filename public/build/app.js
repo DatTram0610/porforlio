@@ -33,7 +33,7 @@ $(function () {
     function RouteConfig($stateProvider) {
 
         $stateProvider.state('app.home', {
-            url: '/',
+            url: '/home',
             views: {
                 'content@app': {
                     templateUrl: '/public/modules/home/home.html',
@@ -68,11 +68,45 @@ $(function () {
 'use strict';
 
 (function () {
+    'use strict';
+
+    angular.module('project.home').controller('ModalInstanceCtrl', ModalInstanceCtrl);
+
+    ModalInstanceCtrl.$inject = ['$uibModalInstance'];
+
+    function ModalInstanceCtrl($uibModalInstance) {
+        var vm = this;
+        vm.header = 'David';
+    };
+})();
+'use strict';
+
+(function () {
     angular.module('project.home').controller('homeController', HomeController);
 
-    HomeController.$inject = [];
+    HomeController.$inject = ['$uibModal'];
 
-    function HomeController() {
+    function HomeController($uibModal) {
         var vm = this;
+
+        vm.open = _open;
+
+        function _open() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/public/modules/home/delete-modal.html',
+                controller: 'ModalInstanceCtrl',
+                controllerAs: 'modalCtrl',
+                backdrop: true,
+                size: "sm"
+                // resolve: {
+                //     strategy: function () {
+                //         return strategy;
+                //     }
+                // }
+            });
+            // .result
+            //     .then(deleteModalSuccess)
+            //     .catch(cancelDelete);
+        }
     }
 })();

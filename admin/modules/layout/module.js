@@ -1,7 +1,7 @@
 
 (function () {
     'use strict'
-    angular.module('project.test', ['ui.router'])
+    angular.module('admin-module.layout', ['ui.router'])
         .config(RouteConfig);
 
     RouteConfig.$inject = ['$stateProvider'];
@@ -12,7 +12,9 @@
             abstract: true,
             views: {
                 root: {
-                    templateUrl: '/public/modules/layout/layout.tpl.html'
+                    // templateUrl: '/admin/lol.html'
+                    templateUrl: '/admin/modules/layout/layout.tpl.html'
+                    // \admin\modules\layout\layout.tpl.html
                 }
             }
         });
