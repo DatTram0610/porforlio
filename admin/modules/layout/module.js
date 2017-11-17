@@ -12,9 +12,7 @@
             abstract: true,
             views: {
                 root: {
-                    // templateUrl: '/admin/lol.html'
                     templateUrl: '/admin/modules/layout/layout.tpl.html'
-                    // \admin\modules\layout\layout.tpl.html
                 }
             }
         });

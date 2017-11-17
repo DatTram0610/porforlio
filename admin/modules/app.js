@@ -7,9 +7,10 @@
         'ui.bootstrap',
 
         // Site modules
-        'admin-module.layout'
-    ])
-        .config(RouteConfig);
+        'admin-module.layout',
+        'admin-module.home', 
+        'admin-module.icon'
+        ]).config(RouteConfig);
 
     RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
 

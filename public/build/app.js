@@ -33,7 +33,7 @@ $(function () {
     function RouteConfig($stateProvider) {
 
         $stateProvider.state('app.home', {
-            url: '/home',
+            url: '/',
             views: {
                 'content@app': {
                     templateUrl: '/public/modules/home/home.html',

@@ -1,16 +1,19 @@
+
+
 (function() {
-    angular.module('project.home', ['ui.router'])
+    'use strict'
+    angular.module('admin-module.home', ['ui.router'])
         .config(RouteConfig);
 
     RouteConfig.$inject = ['$stateProvider'];
 
     function RouteConfig($stateProvider) {
-
+        'use strict'
         $stateProvider.state('app.home', {
-            url: '/',
+            url: '/home',
             views: {
                 'content@app': {
-                    templateUrl: '/public/modules/home/home.html',
+                    templateUrl: '/admin/modules/home/home.html',
                     controller: 'homeController as homeCtrl'
                 }
             }
