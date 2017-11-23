@@ -169,26 +169,7 @@ li a:hover {
 
 /* MEDIA */
 
-@media screen and (max-width: 1400px) {
-    .gradient {
-        /* width: 105em; */
-        height: 20em;
-    }
-}
-
-@media screen and (max-width: 1300px) {
-    .gradient {
-        /* width: 100em; */
-        height: 30em; 
-    }
-}
-
 @media screen and (max-width: 1135px){
-    .gradient {
-        /* width: 90em; */
-        height: 30em; 
-    }
-
     .profile-content {
         margin-top: 3%;
         margin-bottom: 20%;
@@ -204,114 +185,29 @@ li a:hover {
     }
 }
 
- @media screen and (max-width: 700px) {
-     /* .profile-content {
-         margin: 3% 30% 3% 30%;
-         clear: both;
-     } */
-
-     .profile-content {
-         margin: 3% 70% 20% 5%;
-     }
-
-     .profile-image {
-        margin: 3% 10% 20% 40%;
-    }
- }
-
- @media screen and (max-width: 600px) {
-    .profile-content {
-        margin: 3% 70% 20% 3%;
-    }
-
+@media screen and (max-width: 700px) {
     .profile-image {
-       margin: 3% 10% 20% 35%;
-   }
-}
-
-@media screen and (max-width: 550px) {
-
-    /* NAVIGATION Begins */
-    li a {
-        display: block;
-        color: #1b3b6d;
-        text-align: center;
-        padding: 14px 62px;
-        text-decoration: none !important;
-        margin: 0;
+        margin-top: 6%;
     }
-    /* NAVIGATION Ends */
 
-    /* HEADER Begins */
-    .gradient {
-        height: 40em;
-    }
-    
     .profile-content {
-        margin: 25% 62% 10% 6%;
-        text-align: center;
+        margin-left: 13%;
     }
 
-    .profile-image {
-       margin: 3% 58% 10% 17%;
-       box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
-   }
-   /* HEADER Ends */
-}
-
-@media screen and (max-width: 538px) {
-    /* NAVIGATION Begins */
-    li a {
-        display: block;
-        color: #1b3b6d;
-        text-align: center;
-        padding: 14px 60px;
-        text-decoration: none !important;
-        margin: 0;
+    h2 {
+        font-size: 175% !important;
     }
-    /* NAVIGATION Ends */
-}
 
-@media screen and (max-width: 526px) {
-    /* NAVIGATION Begins */
-    li a {
-        display: block;
-        color: #1b3b6d;
-        text-align: center;
-        padding: 14px 58px;
-        text-decoration: none !important;
-        margin: 0;
+    h3 {
+        font-size: 150% !important;
     }
-    /* NAVIGATION Ends */
-}
 
-@media screen and (max-width: 514px) {
-    /* NAVIGATION Begins */
-    li a {
-        display: block;
-        color: #1b3b6d;
-        text-align: center;
-        padding: 14px 56px;
-        text-decoration: none !important;
-        margin: 0;
+    h4 {
+        font-size: 100% !important;
     }
-    /* NAVIGATION Ends */
-
 }
 
-@media screen and (max-width: 503px) {
-    /* NAVIGATION Begins */
-    li a {
-        display: block;
-        color: #1b3b6d;
-        text-align: center;
-        padding: 14px 54px;
-        text-decoration: none !important;
-        margin: 0;
-    }
-    /* NAVIGATION Ends */
-
-}
+ 
 
 @media screen and (max-width: 490px) {
     /* NAVIGATION Begin */
@@ -330,10 +226,59 @@ li a:hover {
 
     /* HEADER Begin */
     .profile-image {
-        margin-top: 3%;
-        margin-bottom: 10%;
-        margin-left: 15%;
+        float: left;
+        margin: 6% 35% 10% 34%;
     }
+
+    .profile-content {
+        float: left;
+        margin: 50% 25% 5% 25%;
+        text-align: center;
+    }
+
     /* HEADER End */
 }
 
+@media screen and (max-width: 400px) {
+    .gradient {
+        height: 40em;
+    }
+
+    .profile-content {
+        margin: 60% 25% 5% 25%;
+    }
+
+    .profile-image {
+        margin: 6% 35% 10% 30%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile-image {
+        margin: 6% 35% 10% 27%;
+    }
+
+    .profile-content {
+        margin-top: 70%;
+    }
+}
+
+@media screen and (max-width: 300px){
+    .gradient {
+        height: 20em;
+    }
+
+    .profile-content {
+        display: none;
+    }
+
+    .profile-image {
+        margin-left: 24%;
+    }
+}
+
+@media screen and (max-width: 200px){
+    .profile-image {
+        margin-left: 18%;
+    }
+}
