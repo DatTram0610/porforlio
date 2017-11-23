@@ -15,7 +15,15 @@ body, html {
 /* NAVIGATION BAR Begin */
 #menu-icon {
     display: none;
+    width: 40px;
+    height: 40px;
+    margin-left: 85%;
 }
+
+#menu {
+    margin: 1px 2px 2px 2px;
+}
+
 ul {
     list-style-type: none;
     margin: -10px;
@@ -47,18 +55,13 @@ li a:hover {
     margin-bottom: 0;
 }
 
-#menu-icon {
-	display: hidden;
-	width: 40px;
-	height: 40px;
-	background: url(../image/nav.png) center;
-}
 /* NAVIGATION BAR End */
 
 /* HEADER Begin */
 .gradient{
-    width: 130em;
-    height: 30em;
+    /* width: 130em;
+    height: 30em; */
+    height:30em;
     background: rgb(126, 203, 233); /* For browsers that do not support gradients */
     background: -webkit-linear-gradient( rgb(126, 203, 233) 50%, white); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient( rgb(126, 203, 233) 50%, white); /* For Opera 11.1 to 12.0 */
@@ -162,113 +165,44 @@ li a:hover {
     transition: opacity 0.5s, transform 0.5s;
 }
 
-
 /* CONTENT End */
 
 /* MEDIA */
 
 @media screen and (max-width: 1400px) {
     .gradient {
-        width: 105em;
+        /* width: 105em; */
         height: 20em;
     }
 }
 
 @media screen and (max-width: 1300px) {
     .gradient {
-        width: 100em;
-        height: 20em; 
+        /* width: 100em; */
+        height: 30em; 
     }
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1135px){
     .gradient {
-        width: 90em;
-        height: 20em; 
+        /* width: 90em; */
+        height: 30em; 
     }
 
     .profile-content {
         margin-top: 3%;
         margin-bottom: 20%;
-        margin-left: 10%;
-    }
-
-    .profile-image {
-        margin-right: 30%;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .gradient {
-        width: 80em;
-        height: 20em;
-    }
-
-     h2 {
-         font-size: 70%;
-     }
-    
-     h3 {
-         font-size: 70%;
-     }
-
-     h4 {
-         font-size: 70%;
-     }
-
-     .profile-content {
-        margin-top: 3%;
-        margin-bottom: 20%;
-        margin-left: 5%;
-    }
-
-    .profile-image {
+        margin-left: 20%;
         margin-right: 50%;
     }
-    
+
+    .profile-image {
+        height: 175px;
+        width: 135px;
+        margin-right: 10%;
+        margin-top: 4%;
+    }
 }
-
-@media screen and (max-width: 900px) {
-    .gradient {
-        width: 80em;
-        height: 20em;
-    }
-
-     h2 {
-         font-size: 80%;
-     }
-    
-     h3 {
-         font-size: 80%;
-     }
-
-     h4 {
-         font-size: 80%;
-     }
-
-     .profile-content {
-        margin-top: 3%;
-        margin-bottom: 20%;
-        margin-left: 5%;
-    }
-
-    .profile-image {
-        margin-right: 70%;
-    }   
-}
-
-@media screen and (max-width: 850px) {
-    .profile-image {
-        margin: 3% 10% 20% 55%;
-    }
-    
- }
-
- @media screen and (max-width: 800px) {
-    .profile-image {
-        margin: 3% 10% 20% 45%;
-    } 
- }
 
  @media screen and (max-width: 700px) {
      /* .profile-content {
@@ -384,8 +318,22 @@ li a:hover {
      #menu-icon {
          display: inline-block;
      }
+
     nav ul, nav:active ul {
           display: none;
       }
+
+      nav {
+        background-color: rgb(23, 182, 221);
+      }
     /* NAVIGATION End */
+
+    /* HEADER Begin */
+    .profile-image {
+        margin-top: 3%;
+        margin-bottom: 10%;
+        margin-left: 15%;
+    }
+    /* HEADER End */
 }
+
